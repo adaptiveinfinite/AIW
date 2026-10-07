@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="16 16 268 268" fill="none">
+  <title>Adaptive</title>
+  <desc>Symbole Adaptive : cercle ouvert en haut à droite, dégradé violet, bleu et cyan, et A sombre sans barre.</desc>
+  <defs>
+    <linearGradient id="ring" x1="30" y1="150" x2="270" y2="150" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#783CE3"/>
+      <stop offset=".32" stop-color="#6030D9"/>
+      <stop offset=".62" stop-color="#3E55D8"/>
+      <stop offset="1" stop-color="#209EC6"/>
+    </linearGradient>
+    <linearGradient id="top" x1="30" y1="110" x2="226" y2="45" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#783CE3"/>
+      <stop offset=".52" stop-color="#8061EB"/>
+      <stop offset="1" stop-color="#5277E6"/>
+    </linearGradient>
+    <linearGradient id="right" x1="265" y1="92" x2="265" y2="180" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5885ED"/>
+      <stop offset="1" stop-color="#209EC6"/>
+    </linearGradient>
+  </defs>
+  <path d="M225.518 56.742 A120 120 0 1 0 254.954 91.823" stroke="url(#ring)" stroke-width="14" stroke-linecap="round"/>
+  <path d="M30 150 A120 120 0 0 1 225.518 56.742" stroke="url(#top)" stroke-width="14" stroke-linecap="round"/>
+  <path d="M266.190 180 A120 120 0 0 0 254.954 91.823" stroke="url(#right)" stroke-width="14" stroke-linecap="round"/>
+  <path d="M103 191 L148 101 Q150 97 152 101 L197 191" stroke="#0B1425" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

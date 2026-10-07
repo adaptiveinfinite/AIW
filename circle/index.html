@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Ideas, experiments and reflections on how people, teams and organizations adapt to evolving technology and ways of working.">
+<title>Adaptive Circle — Adaptive Infinite</title>
+<link rel="icon" href="/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F8F8;--ink:#0D1726;--mute:#66737A;--line:#DCE3E5;--accent:#7A5BB0;--pop:#FFFFFF;
+--font:"Instrument Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1315;--ink:#F2F4F5;--mute:#8B9AA1;--line:#243034;--accent:#B9A0E6;--pop:#151C1F}}
+:root[data-theme="dark"]{--bg:#0E1315;--ink:#F2F4F5;--mute:#8B9AA1;--line:#243034;--accent:#B9A0E6;--pop:#151C1F}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .logo.on-light{display:none}:root:not([data-theme="light"]) .logo.on-dark{display:block}}
+:root[data-theme="dark"] .logo.on-light{display:none}
+:root[data-theme="dark"] .logo.on-dark{display:block}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.page{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;padding:0 clamp(20px,5vw,72px)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+header{display:flex;justify-content:space-between;align-items:center;padding:clamp(18px,3vw,36px) 0;position:relative}
+.brand{display:block;line-height:0;text-decoration:none}
+.logo{width:clamp(180px,24vw,280px);height:auto;display:block}
+.logo.on-dark{display:none}
+.icon-btn{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;color:var(--mute);transition:color .2s,background .2s}
+.icon-btn:hover,.icon-btn[aria-expanded="true"]{color:var(--ink);background:var(--line)}
+.icon-btn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+
+.menu{position:absolute;right:0;top:calc(100% - 6px);min-width:230px;background:var(--pop);border:1px solid var(--line);border-radius:12px;padding:6px;display:none;z-index:10}
+.menu.open{display:block}
+.menu a,.menu button{display:block;width:100%;text-align:left;padding:12px 14px;border-radius:8px;text-decoration:none;font-size:.95rem}
+.menu a:hover,.menu button:hover{background:var(--line)}
+.menu hr{border:0;border-top:1px solid var(--line);margin:6px 0}
+.menu .primary{color:var(--accent);font-weight:600}
+
+main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(24px,6vh,72px) 0}
+.question{margin:0;font-weight:500;font-size:clamp(2rem,6.4vw,4.75rem);line-height:1.08;letter-spacing:-.025em;max-width:16ch;text-wrap:balance;animation:rise 1.4s cubic-bezier(.2,.6,.2,1) both}
+.explore{margin-top:clamp(28px,5vh,44px);display:inline-flex;align-items:center;gap:.5em;min-height:48px;padding:0 26px;border:1px solid var(--ink);border-radius:999px;text-decoration:none;font-size:1rem;font-weight:500;transition:background .25s,color .25s,border-color .25s;animation:rise 1.4s .35s cubic-bezier(.2,.6,.2,1) both}
+.title{margin:0;font-weight:500;font-size:clamp(2.4rem,7vw,5rem);line-height:1.05;letter-spacing:-.025em;animation:rise 1.4s cubic-bezier(.2,.6,.2,1) both}
+.tm{font-size:.3em;font-weight:400;vertical-align:super;margin-left:.1em;letter-spacing:0;color:var(--mute)}
+.lead{margin:clamp(14px,2.5vh,22px) 0 0;max-width:32ch;font-size:clamp(1.15rem,2.6vw,1.6rem);line-height:1.4;font-weight:400;text-wrap:balance;animation:rise 1.4s .15s cubic-bezier(.2,.6,.2,1) both}
+.sec{margin-top:clamp(56px,11vh,112px);width:100%;max-width:34rem}
+.sec h2{margin:0;font-size:.8rem;font-weight:600;letter-spacing:.02em;color:var(--accent)}
+.sec p{margin:12px 0 0;line-height:1.6;color:var(--mute)}
+.follow{scroll-margin-top:24px}
+.options{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+.explore.sm{margin-top:0;min-height:44px;padding:0 22px;font-size:.95rem;animation:none}
+.explore.sm.cta{margin-top:clamp(24px,4vh,36px)}
+.explore span{transition:transform .25s}
+.explore:hover{background:var(--ink);color:var(--bg)}
+.explore:hover span{transform:translateX(3px)}
+
+
+footer{display:flex;justify-content:space-between;align-items:center;padding:clamp(14px,2vw,28px) 0;font-size:.82rem;color:var(--mute)}
+.legal{text-align:right}
+.copy{white-space:nowrap}
+@media (max-width:360px){.legal{display:flex;flex-direction:column;align-items:flex-end}.sep{display:none}.about-link{padding:10px 2px;margin:-10px 0}}
+.about-link{padding:14px 2px;margin:-14px 0;color:inherit;transition:color .2s}
+.about-link:hover{color:var(--ink)}
+.marks{display:flex;gap:4px;position:relative;margin-left:-10px}
+.mark{position:relative}
+.mark .icon-btn{width:44px;height:44px}
+.mark .ai{font-size:.78rem;font-weight:700;letter-spacing:.04em}
+.tip{position:absolute;left:0;bottom:calc(100% + 6px);width:min(300px,calc(100vw - 40px));background:var(--pop);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:.88rem;line-height:1.5;color:var(--ink);opacity:0;visibility:hidden;transform:translateY(4px);transition:opacity .2s,transform .2s,visibility .2s;z-index:10}
+.tip b{display:block;margin-bottom:4px;font-weight:600}
+.mark.open .tip{opacity:1;visibility:visible;transform:none}
+@media (hover:hover){.mark:hover .tip{opacity:1;visibility:visible;transform:none}}
+
+
+dialog.about{border:1px solid var(--line);background:var(--pop);color:var(--ink);border-radius:16px;padding:0;width:min(30rem,calc(100vw - 32px));margin:auto;animation:rise .35s ease both}
+dialog.about::backdrop{background:rgba(8,12,14,.5);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+.about-in{position:relative;padding:clamp(28px,6vw,44px) clamp(24px,6vw,44px)}
+.about-in h2{margin:0 36px 18px 0;font-size:1.3rem;font-weight:500;letter-spacing:-.01em}
+.about-in p{margin:0 0 14px;line-height:1.65;font-size:1rem}
+.about-in p a{color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor}
+.about-in .note{margin:22px 0 0;font-size:.82rem;color:var(--mute)}
+.about-x{position:absolute;top:10px;right:10px}
+.about-x svg{width:20px;height:20px}
+
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <a class="brand" href="/" aria-label="Adaptive Infinite — home"><svg class="logo on-light" viewBox="384 30 1280 290" fill="none" role="img" aria-label="Adaptive Infinite"><g stroke="#000000" stroke-width="13.2" stroke-linecap="round" stroke-linejoin="round"><path d="M429.5 181.7 L487.3 72.6 L545.9 181.7"/><path d="M625.9 72.9 H676.6 C705.8 72.9 729.7 97.0 729.7 127.2 C729.7 157.5 705.8 181.7 676.6 181.7 H625.9"/><path d="M798.7 181.7 L857.4 72.6 L916.8 181.7"/><path d="M981.7 72.9 H1037.1 C1054.3 72.9 1068.1 86.2 1068.1 103.3 C1068.1 120.2 1054.3 133.6 1037.1 133.6 H981.7 V181.7"/><path d="M1128.2 73.0 H1221.1 M1174.2 73.0 V182.0"/><path d="M1283.0 72.8 V182.0"/><path d="M1345.0 72.8 L1401.2 181.8 L1457.0 72.8"/><path d="M1517.5 73.0 H1618.4 M1517.5 128.9 H1618.4 M1517.5 181.7 H1618.4"/></g><g stroke="#000000" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"><path transform="translate(695 0)" d="M0 242 V279.5"/><path transform="translate(789 0)" d="M-14 279.5 V242 L14 279.5 V242"/><path transform="translate(883 0)" d="M-12 279.5 V242 H12 M-12 259.5 H9"/><path transform="translate(977 0)" d="M0 242 V279.5"/><path transform="translate(1071 0)" d="M-14 279.5 V242 L14 279.5 V242"/><path transform="translate(1165 0)" d="M0 242 V279.5"/><path transform="translate(1259 0)" d="M-14 242 H14 M0 242 V279.5"/><path transform="translate(1353 0)" d="M12 242 H-12 V279.5 H12 M-12 260 H9"/></g></svg><svg class="logo on-dark" viewBox="384 30 1280 290" fill="none" role="img" aria-label="Adaptive Infinite"><g stroke="#FFFFFF" stroke-width="13.2" stroke-linecap="round" stroke-linejoin="round"><path d="M429.5 181.7 L487.3 72.6 L545.9 181.7"/><path d="M625.9 72.9 H676.6 C705.8 72.9 729.7 97.0 729.7 127.2 C729.7 157.5 705.8 181.7 676.6 181.7 H625.9"/><path d="M798.7 181.7 L857.4 72.6 L916.8 181.7"/><path d="M981.7 72.9 H1037.1 C1054.3 72.9 1068.1 86.2 1068.1 103.3 C1068.1 120.2 1054.3 133.6 1037.1 133.6 H981.7 V181.7"/><path d="M1128.2 73.0 H1221.1 M1174.2 73.0 V182.0"/><path d="M1283.0 72.8 V182.0"/><path d="M1345.0 72.8 L1401.2 181.8 L1457.0 72.8"/><path d="M1517.5 73.0 H1618.4 M1517.5 128.9 H1618.4 M1517.5 181.7 H1618.4"/></g><g stroke="#FFFFFF" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"><path transform="translate(695 0)" d="M0 242 V279.5"/><path transform="translate(789 0)" d="M-14 279.5 V242 L14 279.5 V242"/><path transform="translate(883 0)" d="M-12 279.5 V242 H12 M-12 259.5 H9"/><path transform="translate(977 0)" d="M0 242 V279.5"/><path transform="translate(1071 0)" d="M-14 279.5 V242 L14 279.5 V242"/><path transform="translate(1165 0)" d="M0 242 V279.5"/><path transform="translate(1259 0)" d="M-14 242 H14 M0 242 V279.5"/><path transform="translate(1353 0)" d="M12 242 H-12 V279.5 H12 M-12 260 H9"/></g></svg></a>
+    <button class="icon-btn" id="userBtn" aria-label="Account menu" aria-haspopup="true" aria-expanded="false" aria-controls="userMenu">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"/></svg>
+    </button>
+    <nav class="menu" id="userMenu" aria-label="Account">
+      <a class="primary" href="/circle" data-link="circle" aria-current="page">Adaptive Circle™</a>
+      <hr>
+      <button type="button" id="themeBtn">Theme: System</button>
+    </nav>
+  </header>
+
+  <main>
+    <h1 class="title">Adaptive Circle<span class="tm">™</span></h1>
+    <p class="lead">Ideas, experiments and reflections on how people, teams and organizations adapt to evolving technology and ways of working.</p>
+    <a class="explore sm cta" id="readLatest" href="/circle/when-ai-does-the-work">Read latest <span aria-hidden="true">→</span></a>
+
+    <section class="sec follow" id="follow" aria-labelledby="followTitle">
+      <h2 id="followTitle">Follow the Circle</h2>
+      <p>Choose how you want to follow new ideas and reflections.</p>
+      <ul class="options">
+        <li><a class="explore sm" id="followLinkedin" href="#" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">→</span></a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="marks">
+      <div class="mark">
+        <button class="icon-btn" type="button" aria-label="About AI use" aria-expanded="false"><span class="ai">AI</span></button>
+        <div class="tip" role="tooltip"><b>AI as an assistant</b>AI helps us explore, reflect and adapt more widely, while human judgment stays in charge.</div>
+      </div>
+      <div class="mark">
+        <button class="icon-btn" type="button" aria-label="About Adaptive Sustainability" aria-expanded="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14"/><path d="M5 19c2-4 5-7 9-9"/></svg>
+        </button>
+        <div class="tip" role="tooltip"><b>Adaptive Sustainability</b>We use technology and resources intentionally and responsibly.</div>
+      </div>
+    </div>
+    <span class="legal"><button type="button" class="about-link" id="aboutBtn">About</button><span class="sep" aria-hidden="true"> · </span><span class="copy">© 2026 Adaptive Infinite</span></span>
+  </footer>
+</div>
+
+<dialog class="about" id="about" aria-labelledby="aboutTitle">
+  <div class="about-in">
+    <button class="icon-btn about-x" type="button" id="aboutClose" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <h2 id="aboutTitle">About Adaptive Infinite™</h2>
+    <p>Adaptive Infinite™ is a personal exploration project by Phil Notot, focused on how people, teams and organizations can continuously adapt to evolving ways of working and technology.</p>
+    <p>Ideas, experiments and reflections are shared through <a id="aboutCircle" href="/circle">Adaptive Circle</a>.</p>
+    <p class="note">Views and content are personal and do not represent my employer.</p>
+  </div>
+</dialog>
+
+<script>
+// Adaptive Circle content. LinkedIn is currently the publishing/follow channel.
+var CONTENT = {
+  circleUrl: "/circle",
+  latestUrl: "/circle/when-ai-does-the-work",   // latest internal article
+  followUrl: "https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7439486018887630849"
+  // Later: add more follow options as extra <li> items in the "options" list
+};
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  try{$("readLatest").href=CONTENT.latestUrl;}catch(e){}
+  try{$("followLinkedin").href=CONTENT.followUrl;}catch(e){}
+  try{document.querySelector("[data-link=circle]").href=CONTENT.circleUrl;}catch(e){}
+
+
+  // About modal
+  var ad=$("about");
+  try{$("aboutCircle").href=CONTENT.circleUrl;}catch(e){}
+  $("aboutBtn").addEventListener("click",function(){closeMenu();if(ad.showModal)ad.showModal();else ad.setAttribute("open","")});
+  $("aboutClose").addEventListener("click",function(){ad.close()});
+  ad.addEventListener("click",function(e){if(e.target===ad)ad.close()});
+
+  // User menu
+  var ub=$("userBtn"),um=$("userMenu");
+  function closeMenu(){um.classList.remove("open");ub.setAttribute("aria-expanded","false")}
+  ub.addEventListener("click",function(e){e.stopPropagation();var o=um.classList.toggle("open");ub.setAttribute("aria-expanded",o)});
+  document.addEventListener("click",function(e){if(!um.contains(e.target))closeMenu();closeTips(e.target)});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape"){closeMenu();closeTips()}});
+
+  // Footer info popovers
+  var marks=document.querySelectorAll(".mark");
+  function closeTips(t){marks.forEach(function(m){if(!t||!m.contains(t)){m.classList.remove("open");m.querySelector("button").setAttribute("aria-expanded","false")}})}
+  marks.forEach(function(m){var b=m.querySelector("button");b.addEventListener("click",function(e){e.stopPropagation();closeTips(b);var o=m.classList.toggle("open");b.setAttribute("aria-expanded",o)})});
+
+  // Theme: System → Light → Dark
+  var modes=["system","light","dark"],labels={system:"System",light:"Light",dark:"Dark"},root=document.documentElement,tb=$("themeBtn"),mode="system";
+  try{mode=localStorage.getItem("ae-theme")||"system"}catch(e){}
+  function apply(){if(mode==="system")root.removeAttribute("data-theme");else root.setAttribute("data-theme",mode);tb.textContent="Theme: "+labels[mode]}
+  tb.addEventListener("click",function(){mode=modes[(modes.indexOf(mode)+1)%3];try{localStorage.setItem("ae-theme",mode)}catch(e){}apply()});
+  apply();
+})();
+</script>
+</body>
+</html>
